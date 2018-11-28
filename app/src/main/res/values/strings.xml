@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">WebAntBeta</string>
+
+    <string name="search">Поиск</string>
+    <string name="menu_item_notification">Напоминание</string>
+    <string name="menu_item_favorites">Избранное</string>
+    <string name="menu_item_archive">Архив</string>
+    <string name="menu_item_settings">Настройки</string>
+    <string name="menu_item_reference">Справка</string>
+
+    <string name="view_navigation_open">Открыть</string>
+    <string name="view_navigation_close">Закрыть</string>
+
+    <string name="tab_item_history">История</string>
+    <string name="tab_item_ideas">Идея</string>
+    <string name="tab_item_todo">Важные</string>
+    <string name="tab_item_birthdays">Дни рождения</string>
+
+    <string name="title_new">New</string>
+    <string name="title_populary">Populary</string>
+    <string name="title_all">All</string>
+</resources>
