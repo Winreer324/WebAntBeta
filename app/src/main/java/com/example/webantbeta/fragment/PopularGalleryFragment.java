@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,11 +51,15 @@ public class PopularGalleryFragment extends Fragment {
         View view = inflater.inflate(R.layout.layout_new_fragment, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.new_fragment);
         Log.d(TAG, "onCreateView: created.");
+
+
         return view;
     }
 
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerview");
+
+
 
         Adapter adapter = new Adapter(getContext(), mItem);
         mRecyclerView.setAdapter(adapter);

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private String mUrl = "http://gallery.dev.webant.ru/media/";
 
     private ViewPager mViewPager;
-    private static Toolbar toolbar;
+    private Toolbar toolbar;
     private AdapterPage mAdapter;
     private TabLayout mTabLayout;
 
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         check();
     }
-    private void check(){
+    public  void check(){
          CoordinatorLayout mainLayout = (CoordinatorLayout) findViewById(R.id.main_content);
          ImageView imageView = new ImageView(MainActivity.this);
         imageView.setImageResource(R.drawable.not_connect);

@@ -1,7 +1,9 @@
 package com.example.webantbeta.adapter;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.webantbeta.DetailActivity;
 import com.example.webantbeta.Item;
 import com.example.webantbeta.MainActivity;
 import com.example.webantbeta.R;
@@ -30,6 +33,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static android.support.v4.content.ContextCompat.startActivity;
 import static com.example.webantbeta.Item.mUrl;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
@@ -51,35 +55,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
 
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, final int i) {
+    public ViewHolder onCreateViewHolder(@NonNull final ViewGroup viewGroup, final int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_list_item, viewGroup, false);
         final ViewHolder holder = new ViewHolder(view);
 
-//        mDialog = new Dialog(mContext);
-//        mDialog.setContentView(R.layout.popup);
-
-//        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                TextView dialogName = (TextView) mDialog.findViewById(R.id.popup_name);
-//                TextView dialogDescription = (TextView) mDialog.findViewById(R.id.popup_description);
-//                ImageView dialogImage = (ImageView) mDialog.findViewById(R.id.popup_image);
-//
-//                dialogName.setText(mPictures.get(holder.getAdapterPosition()).getName());
-//                dialogDescription.setText(mPictures.get(holder.getAdapterPosition()).getDescription());
-//
-//                Glide.with(mContext)
-//                        .asBitmap()
-//                        .load(mPictures.get(holder.getAdapterPosition()).getUrl())
-//                        .into(dialogImage);
-//
-//                Log.d(TAG, "onClick: " + mPictures.get(holder.getAdapterPosition()).getUrl());
-//
-//
-//                mDialog.show();
-//            }
-//        });
         return holder;
     }
 
@@ -98,9 +77,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked on text: "+ mItem.get(i));
-                Toast.makeText(mContext, mItem.get(i).getUrl()+"\r"+
-                        mItem.get(i).getName(), Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(mContext, mItem.get(i).getUrl()+"\r          "+
+                        mItem.get(i).getName()+"         "+ mItem.get(i).getDescription(),
+                        Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(mContext, DetailActivity.class);
+                intent.putExtra("Url", mItem.get(i).getUrl());
+                intent.putExtra("Name", mItem.get(i).getName());
+                intent.putExtra("Description", mItem.get(i).getDescription());
+                mContext.startActivity(intent);
             }
         });
     }
