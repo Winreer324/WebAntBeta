@@ -1,13 +1,18 @@
 package com.example.webantbeta;
 
 import android.os.AsyncTask;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.webantbeta.adapter.Adapter;
 import com.example.webantbeta.adapter.AdapterPage;
@@ -24,6 +29,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+
+import static com.example.webantbeta.connect.CheckConnection.hasConnection;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,13 +76,41 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
-//        if (!hasConnection(this)) {
-//            ImageView noConnectionImageView = (ImageView) findViewById(R.id.no_connection_image_view);
-//            noConnectionImageView.setImageResource(R.drawable.no_connection);
-//            noConnectionImageView.setVisibility(View.VISIBLE);
-//        } else {
-//            Log.d(TAG, "onCreate: Connection!");
-//        }
+
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CoordinatorLayout mainLayout = (CoordinatorLayout) findViewById(R.id.main_content);
+                ImageView imageView = new ImageView(MainActivity.this);
+                mainLayout.removeView(imageView);
+                check();
+                mainLayout.removeView(imageView);
+            }
+        };
+        btn.setOnClickListener(listener);
+
+        check();
+    }
+    private void check(){
+         CoordinatorLayout mainLayout = (CoordinatorLayout) findViewById(R.id.main_content);
+         ImageView imageView = new ImageView(MainActivity.this);
+        imageView.setImageResource(R.drawable.not_connect);
+         ViewPager viewPager = findViewById(R.id.container);
+         RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        if (!hasConnection(MainActivity.this)) {
+            viewPager.setVisibility(View.INVISIBLE);
+            recyclerView.setVisibility(View.INVISIBLE);
+            mainLayout.removeView(imageView);
+            mainLayout.addView(imageView);
+            Toast.makeText(MainActivity.this, "MainActivity connection is not found", Toast.LENGTH_SHORT).show();
+        } else {
+            viewPager.setVisibility(View.VISIBLE);
+            mainLayout.removeView(imageView);
+            recyclerView.setVisibility(View.VISIBLE);
+            imageView.setVisibility(View.VISIBLE);
+            Toast.makeText(MainActivity.this, "click connect reload", Toast.LENGTH_SHORT).show();
+        }
     }
 //    private class ParseTask extends AsyncTask<Void, Void, String> {
 //

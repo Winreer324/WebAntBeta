@@ -15,14 +15,14 @@
         android:layout_height="80dp"
         android:id="@+id/image"
         android:src="@drawable/ic_launcher_background"/>
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/image_name"-->
-        <!--android:text="sdafaffa"-->
-        <!--android:layout_toRightOf="@id/image"-->
-        <!--android:textColor="@color/colorBlack"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_marginLeft="35dp"-->
-        <!--android:textSize="17sp"/>-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image_name"
+        android:text="sdafaffa"
+        android:layout_toRightOf="@id/image"
+        android:textColor="@color/colorBlack"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="35dp"
+        android:textSize="17sp"/>
 </RelativeLayout>

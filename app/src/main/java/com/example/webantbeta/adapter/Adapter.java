@@ -9,16 +9,20 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.webantbeta.Item;
+import com.example.webantbeta.MainActivity;
 import com.example.webantbeta.R;
 
 import java.util.ArrayList;
@@ -87,7 +91,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 .asBitmap()
                 .load(mUrl+mItem.get(i).getUrl())
                 .into(viewHolder.image);
-
+        viewHolder.imageName.setText(mItem.get(i).getName());
 //        listener text
 
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +100,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 Log.d(TAG, "onClick: clicked on text: "+ mItem.get(i));
                 Toast.makeText(mContext, mItem.get(i).getUrl()+"\r"+
                         mItem.get(i).getName(), Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -108,12 +113,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private CircleImageView image;
+        private TextView imageName;
         private RelativeLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
-//            imageName = itemView.findViewById(R.id.image_name);
+            imageName = itemView.findViewById(R.id.image_name);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
