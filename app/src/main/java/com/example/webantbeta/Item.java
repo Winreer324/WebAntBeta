@@ -1,7 +1,5 @@
 package com.example.webantbeta;
 
-import java.util.ArrayList;
-
 public class Item {
     public static final String mUrl = "http://gallery.dev.webant.ru/media/";
 

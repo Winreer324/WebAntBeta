@@ -16,8 +16,6 @@ import com.example.webantbeta.adapter.AdapterPage;
 import com.example.webantbeta.fragment.NewGalleryFragment;
 import com.example.webantbeta.fragment.PopularGalleryFragment;
 
-import static com.example.webantbeta.Item.mUrl;
-
 public class DetailActivity extends MainActivity {
     ImageView image_popup;
     TextView textDesc,textMain;
@@ -34,13 +32,13 @@ public class DetailActivity extends MainActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.title_new);
 
-        Button btn = new Button(this);
-        btn.setText("click");
-        int check = 1;
-        btn.setId(check);
-        btn.setWidth(30);
-        btn.setHeight(30);
-        toolbar.addView(btn);
+//        Button btn = new Button(this);
+//        btn.setText("click");
+//        int check = 1;
+//        btn.setId(check);
+//        btn.setWidth(30);
+//        btn.setHeight(30);
+//        toolbar.addView(btn);
 
         setSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
@@ -59,10 +57,13 @@ public class DetailActivity extends MainActivity {
 
 
 //      creat view popup
+
         image_popup = (ImageView) findViewById(R.id.image_popup);
         textMain = (TextView) findViewById(R.id.textMain);
         textDesc = (TextView) findViewById(R.id.textDesc);
         String url = "http://gallery.dev.webant.ru/media/", name = null, description = null;
+        String someText = " some text some text some text some text some text some text some text" +
+                " some text some text some text some text some text some text some text some text some ";
         try {
             Bundle arguments = getIntent().getExtras();
 
@@ -75,7 +76,7 @@ public class DetailActivity extends MainActivity {
 
                  name = arguments.get("Name").toString();
                  description = arguments.get("Description").toString();
-
+                description += someText;
                 Toast.makeText(this, url + "   " + name + "   " + description, Toast.LENGTH_SHORT).show();
             }
             textMain.setText(name);

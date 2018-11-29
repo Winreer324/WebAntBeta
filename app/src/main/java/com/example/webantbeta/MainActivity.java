@@ -1,11 +1,10 @@
 package com.example.webantbeta;
 
-import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,20 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.webantbeta.adapter.Adapter;
 import com.example.webantbeta.adapter.AdapterPage;
 import com.example.webantbeta.fragment.NewGalleryFragment;
 import com.example.webantbeta.fragment.PopularGalleryFragment;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 import static com.example.webantbeta.connect.CheckConnection.hasConnection;
@@ -53,15 +42,15 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: Started.");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.title_all);
+        toolbar.setTitle(R.string.title_new);
 
-        Button btn = new Button(this);
-        btn.setText("click");
-        int check = 1;
-        btn.setId(check);
-        btn.setWidth(30);
-        btn.setHeight(30);
-        toolbar.addView(btn);
+//        Button btn = new Button(this);
+//        btn.setText("click");
+//        int check = 1;
+//        btn.setId(check);
+//        btn.setWidth(30);
+//        btn.setHeight(30);
+//        toolbar.addView(btn);
 
         setSupportActionBar(toolbar);
 
@@ -88,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 mainLayout.removeView(imageView);
             }
         };
-        btn.setOnClickListener(listener);
+//        btn.setOnClickListener(listener);
 
         check();
     }

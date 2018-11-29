@@ -8,6 +8,18 @@
     <color name="colorPrimary">#0097A7</color>
     <color name="colorPrimaryDark">#00838F</color>
     <color name="mainBackground">#e2e2e2</color>
-    <color name="colorWhite">#e2e2e2</color>
+    <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#191919</color>
+
+    <color name="colorBackgroundPopup">#1F2E5F</color>
+    <color name="colorTextMainPopup">#2F1767</color>
+    <color name="colorTextDescPopup">#707070</color>
+
+    <color name="colorTabs">#F9F9F9</color>
+    <color name="colorTabsIconActive">#ED5992</color>
+    <color name="colorTabsIconNoActive">#ADADAD</color>
+
+    <color name="colorActivityBarBack">#2F1767</color>
+
+
 </resources>

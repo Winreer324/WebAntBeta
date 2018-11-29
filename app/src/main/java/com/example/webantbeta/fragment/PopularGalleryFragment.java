@@ -4,10 +4,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,8 +39,6 @@ public class PopularGalleryFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-
-
         new PopularGalleryFragment.MyTask().execute();
         Log.d(TAG, "onCreate: created.");
     }
@@ -51,16 +49,14 @@ public class PopularGalleryFragment extends Fragment {
         View view = inflater.inflate(R.layout.layout_new_fragment, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.new_fragment);
         Log.d(TAG, "onCreateView: created.");
-
+        TabLayout tabLayout = view.findViewById(R.id.tabs);
+//        tabLayout.addTab(tabLayout.newTab().setText("SecondTab"));
 
         return view;
     }
 
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerview");
-
-
-
         Adapter adapter = new Adapter(getContext(), mItem);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -73,7 +69,6 @@ public class PopularGalleryFragment extends Fragment {
 
         @Override
         protected String doInBackground(Void... params) {
-            // получаем данные с внешнего ресурса
             try {
                 URL url = new URL("http://gallery.dev.webant.ru/api/photos?popular=true");
 
@@ -90,9 +85,7 @@ public class PopularGalleryFragment extends Fragment {
                 while ((line = reader.readLine()) != null) {
                     buffer.append(line);
                 }
-
                 resultJson = buffer.toString();
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -102,7 +95,6 @@ public class PopularGalleryFragment extends Fragment {
         @Override
         protected void onPostExecute(String strJson) {
             super.onPostExecute(strJson);
-            // выводим целиком полученную json-строку
             Log.d(TAG, strJson);
 
             JSONObject dataJsonObj = null;
