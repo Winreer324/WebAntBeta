@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.webantbeta.content.Content;
@@ -49,15 +50,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 .asBitmap()
                 .load(mUrl+ mContent.get(i).getUrl())
                 .into(viewHolder.image);
+
 //        listener text
 
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked on text: "+ mContent.get(i));
-//                Toast.makeText(mContext, mContent.get(i).getUrl()+"\r          "+
-//                        mContent.get(i).getName()+"         "+ mContent.get(i).getDescription(),
-//                        Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(mContext, DetailActivity.class);
                 intent.putExtra("Url", mContent.get(i).getUrl());
                 intent.putExtra("Name", mContent.get(i).getName());

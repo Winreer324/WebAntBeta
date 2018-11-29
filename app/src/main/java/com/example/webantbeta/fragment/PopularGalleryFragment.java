@@ -6,14 +6,17 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.webantbeta.R;
+import com.example.webantbeta.activity.MainActivity;
 import com.example.webantbeta.adapter.Adapter;
 import com.example.webantbeta.connect.ParseJSON;
 import com.example.webantbeta.content.Content;
@@ -24,7 +27,7 @@ public class PopularGalleryFragment extends Fragment {
     private static final String TAG = "NewPicturesFragment";
 
     private ParseJSON connect = new ParseJSON();
-    private static final String url = "http://gallery.dev.webant.ru/api/photos?populary=true";
+    private static final String url = "http://gallery.dev.webant.ru/api/photos?popular=true";
 
     private RecyclerView mRecyclerView;
     private ArrayList<Content> mContent = new ArrayList<>();
@@ -34,6 +37,7 @@ public class PopularGalleryFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         new PopularGalleryFragment.MyTask().execute();
+
         Log.d(TAG, "onCreate: created.");
     }
 
@@ -43,9 +47,16 @@ public class PopularGalleryFragment extends Fragment {
         View view = inflater.inflate(R.layout.layout_new_fragment, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.new_fragment);
         Log.d(TAG, "onCreateView: created.");
-        TabLayout tabLayout = view.findViewById(R.id.tabs);
-
+//        TabLayout tabLayout = view.findViewById(R.id.tabs);
+        tab(view);
         return view;
+    }
+
+    private void tab(View view) {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        activity.setSupportActionBar(toolbar);
+        toolbar.setTitle("Popular");
     }
 
     private void initRecyclerView() {

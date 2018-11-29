@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/new_tab"
+        android:icon="@drawable/file_document_box"
+        android:title="@string/title_new" />
+    <item
+        android:id="@+id/populary_tab"
+        android:icon="@drawable/fire"
+        android:title="@string/title_populary" />
+</menu>

@@ -27,7 +27,7 @@ public class AdapterPage extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return mFragmentTitleList.get(position);
     }
-
+    @Nullable
     @Override
     public Fragment getItem(int i) {
         return mFragmentList.get(i);

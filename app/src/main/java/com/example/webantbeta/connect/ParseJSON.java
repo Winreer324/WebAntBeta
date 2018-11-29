@@ -19,8 +19,6 @@ import java.util.ArrayList;
 
 public class ParseJSON {
 
-    private HttpURLConnection urlConnection = null;
-    private BufferedReader reader = null;
     private String resultJson = "";
 
     private static final String TAG = "ParseJSON: ";
@@ -30,14 +28,14 @@ public class ParseJSON {
         try {
             URL url = new URL(connectUrl);
 
-            urlConnection = (HttpURLConnection) url.openConnection();
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
             InputStream inputStream = urlConnection.getInputStream();
             StringBuffer buffer = new StringBuffer();
 
-            reader = new BufferedReader(new InputStreamReader(inputStream));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
             String line;
             while ((line = reader.readLine()) != null) {
