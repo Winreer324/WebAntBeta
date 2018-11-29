@@ -1,4 +1,4 @@
-package com.example.webantbeta;
+package com.example.webantbeta.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -9,15 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import com.example.webantbeta.R;
 import com.example.webantbeta.adapter.AdapterPage;
 import com.example.webantbeta.fragment.NewGalleryFragment;
 import com.example.webantbeta.fragment.PopularGalleryFragment;
-
-import java.util.ArrayList;
 
 import static com.example.webantbeta.connect.CheckConnection.hasConnection;
 
@@ -51,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        mAdapter  = new AdapterPage(getSupportFragmentManager());
+        mAdapter = new AdapterPage(getSupportFragmentManager());
 
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -61,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
-
 
 
         View.OnClickListener listener = new View.OnClickListener() {
@@ -78,12 +74,13 @@ public class MainActivity extends AppCompatActivity {
 
         check();
     }
-    public  void check(){
-         CoordinatorLayout mainLayout = (CoordinatorLayout) findViewById(R.id.main_content);
-         ImageView imageView = new ImageView(MainActivity.this);
-        imageView.setImageResource(R.drawable.not_connect);
-         ViewPager viewPager = findViewById(R.id.container);
-         RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+    public void check() {
+            CoordinatorLayout mainLayout = (CoordinatorLayout) findViewById(R.id.main_content);
+            ImageView imageView = new ImageView(MainActivity.this);
+            imageView.setImageResource(R.drawable.not_connect);
+            ViewPager viewPager = findViewById(R.id.container);
+            RecyclerView recyclerView = findViewById(R.id.recyclerView);
         if (!hasConnection(MainActivity.this)) {
             viewPager.setVisibility(View.INVISIBLE);
             recyclerView.setVisibility(View.INVISIBLE);

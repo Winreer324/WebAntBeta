@@ -1,13 +1,13 @@
-package com.example.webantbeta;
+package com.example.webantbeta.content;
 
-public class Item {
+public class Content {
     public static final String mUrl = "http://gallery.dev.webant.ru/media/";
 
     private String name;
     private String url;
     private String description;
 
-    public Item(String name, String url, String description) {
+    public Content(String name, String url, String description) {
         this.name = name;
         this.url = url;
         this.description = description;
