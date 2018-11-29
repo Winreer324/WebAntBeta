@@ -35,6 +35,7 @@
         android:id="@+id/image_popup"
         android:layout_width="400dp"
         android:layout_height="200dp"
+        android:scaleType="fitXY"
         android:layout_x="0dp"
         android:layout_y="53dp"
         android:background="@color/colorBackgroundPopup"

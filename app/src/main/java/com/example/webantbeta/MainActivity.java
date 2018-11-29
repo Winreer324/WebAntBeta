@@ -32,9 +32,6 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
 
 
-    private ArrayList<String> mNames = new ArrayList<>();
-    private ArrayList<String> mImageUrls = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,84 +89,13 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setVisibility(View.INVISIBLE);
             mainLayout.removeView(imageView);
             mainLayout.addView(imageView);
-            Toast.makeText(MainActivity.this, "MainActivity connection is not found", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this, "MainActivity connection is not found", Toast.LENGTH_SHORT).show();
         } else {
             viewPager.setVisibility(View.VISIBLE);
             mainLayout.removeView(imageView);
             recyclerView.setVisibility(View.VISIBLE);
             imageView.setVisibility(View.VISIBLE);
-            Toast.makeText(MainActivity.this, "click connect reload", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity.this, "click connect reload", Toast.LENGTH_SHORT).show();
         }
     }
-//    private class ParseTask extends AsyncTask<Void, Void, String> {
-//
-//        HttpURLConnection urlConnection = null;
-//        BufferedReader reader = null;
-//        String resultJson = "";
-//
-//        @Override
-//        protected String doInBackground(Void... params) {
-//            // получаем данные с внешнего ресурса
-//            try {
-//                URL url = new URL("http://gallery.dev.webant.ru/api/photos?page=1&limit=23");
-////                URL url = new URL("http://androiddocs.ru/api/friends.json");
-//
-//                urlConnection = (HttpURLConnection) url.openConnection();
-//                urlConnection.setRequestMethod("GET");
-//                urlConnection.connect();
-//
-//                InputStream inputStream = urlConnection.getInputStream();
-//                StringBuffer buffer = new StringBuffer();
-//
-//                reader = new BufferedReader(new InputStreamReader(inputStream));
-//
-//                String line;
-//                while ((line = reader.readLine()) != null) {
-//                    buffer.append(line);
-//                }
-//
-//                resultJson = buffer.toString();
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            return resultJson;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String strJson) {
-//            super.onPostExecute(strJson);
-//            // выводим целиком полученную json-строку
-//            Log.d(TAG, strJson);
-//
-//            JSONObject dataJsonObj = null;
-//
-//            try {
-//                dataJsonObj = new JSONObject(strJson);
-//                JSONArray data = dataJsonObj.getJSONArray("data");
-//                for (int i = 0; i < data.length(); i++) {
-//                    //     возращаем едемент под массива data
-//                    JSONObject datafriend = data.getJSONObject(i);
-//                    JSONObject imagefriend = datafriend.getJSONObject("image");
-//                    String imgid = imagefriend.getString("id");
-//                    String contentUrl = imagefriend.getString("contentUrl");
-//                    String description = datafriend.getString("description");
-//
-//                    mImageUrls.add(mUrl+contentUrl);
-//                    mNames.add(description);
-//
-//                    Log.d(TAG, "\r id: " + imgid);
-//                    Log.d(TAG, "\r description: " + description);
-//                    Log.d(TAG, "\r contentUrl: " + contentUrl);
-//                    Log.d(TAG, "\r i: " + i);
-//                }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }  finally {
-//                Log.d(TAG, "\r\r array");
-//                Log.d(TAG, "\t mImageUrls: " + mImageUrls);
-//                Log.d(TAG, "\t mNames: " + mNames);
-//            }
-//        }
-//    }
 }

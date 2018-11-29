@@ -18,7 +18,7 @@ import com.example.webantbeta.fragment.PopularGalleryFragment;
 
 public class DetailActivity extends MainActivity {
     ImageView image_popup;
-    TextView textDesc,textMain;
+    TextView textDesc, textMain;
     private ViewPager mViewPager;
     private Toolbar toolbar;
     private AdapterPage mAdapter;
@@ -43,7 +43,7 @@ public class DetailActivity extends MainActivity {
         setSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
 
-        mAdapter  = new AdapterPage(getSupportFragmentManager());
+        mAdapter = new AdapterPage(getSupportFragmentManager());
 
         mTabLayout = (TabLayout) findViewById(R.id.tabs_popup);
         mViewPager = (ViewPager) findViewById(R.id.container_popup);
@@ -74,16 +74,16 @@ public class DetailActivity extends MainActivity {
                         .load(url)
                         .into(image_popup);
 
-                 name = arguments.get("Name").toString();
-                 description = arguments.get("Description").toString();
+                name = arguments.get("Name").toString();
+                description = arguments.get("Description").toString();
                 description += someText;
-                Toast.makeText(this, url + "   " + name + "   " + description, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, url + "   " + name + "   " + description, Toast.LENGTH_SHORT).show();
             }
             textMain.setText(name);
             textDesc.setText(description);
             image_popup.setImageURI(Uri.parse(url));
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(this, "Error in DetailActivity", Toast.LENGTH_SHORT).show();
         }
     }
