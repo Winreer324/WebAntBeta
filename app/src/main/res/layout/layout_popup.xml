@@ -70,13 +70,13 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs_popup"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_gravity="bottom"
         android:layout_marginTop="360dp"
         android:layout_x="0dp"
         android:layout_y="530dp"
         app:tabBackground="@color/colorWhite"
-        app:tabIndicatorColor="@color/colorWhite"
+        app:tabIndicatorColor="@color/colorBlack"
         app:tabSelectedTextColor="@color/colorTabsIconActive"
         app:tabTextAppearance="@style/TabText">
 

@@ -1,5 +1,6 @@
 package com.example.webantbeta.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ import com.example.webantbeta.R;
 import com.example.webantbeta.adapter.AdapterPage;
 import com.example.webantbeta.fragment.NewGalleryFragment;
 import com.example.webantbeta.fragment.PopularGalleryFragment;
+
+import static com.example.webantbeta.R.color.colorWhite;
 
 public class DetailActivity extends MainActivity {
     ImageView image_popup;
@@ -40,11 +43,8 @@ public class DetailActivity extends MainActivity {
         Button btn = new Button(this);
 
         btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_left, 0, 0, 0);
-        btn.setBackgroundColor(getResources().getColor(R.color.colorWhite));
-//        final int check = 1;
-//        btn.setId(check);
-        btn.setWidth(30);
-        btn.setHeight(30);
+        btn.setBackgroundColor(0xFFFFFFFF);
+
         toolbar.addView(btn);
 
         setSupportActionBar(toolbar);
@@ -73,13 +73,38 @@ public class DetailActivity extends MainActivity {
         mTabLayout = (TabLayout) findViewById(R.id.tabs_popup);
         mViewPager = (ViewPager) findViewById(R.id.container_popup);
 
-        mAdapter.addFragment(new NewGalleryFragment(),strNew);
-        mAdapter.addFragment(new PopularGalleryFragment(),strPopulary);
+        mTabLayout.addTab(mTabLayout.newTab().setIcon(R.drawable.file_document_box).setText("New"));
+        mTabLayout.addTab(mTabLayout.newTab().setIcon(R.drawable.fire).setText("Popular"));
+//
+//        mAdapter.addFragment(new NewGalleryFragment(),strNew);
+//        mAdapter.addFragment(new PopularGalleryFragment(),strPopulary);
 
-        mViewPager.setAdapter(mAdapter);
+//        mViewPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
-        setupTabIcons();
-        mViewPager.setVisibility(View.INVISIBLE);
+
+
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if(mTabLayout.getSelectedTabPosition() == 0){
+                    Toast.makeText(DetailActivity.this, "New", Toast.LENGTH_SHORT).show();
+                }
+                if(mTabLayout.getSelectedTabPosition() == 1){
+                    Toast.makeText(DetailActivity.this, "Popular", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+//        mViewPager.setVisibility(View.INVISIBLE);
 
 //      creat view popup
 
@@ -110,10 +135,5 @@ public class DetailActivity extends MainActivity {
         } catch (Exception e) {
             Toast.makeText(this, "Error in DetailActivity", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void setupTabIcons() {
-        mTabLayout.getTabAt(0).setIcon(R.drawable.file_document_box);
-        mTabLayout.getTabAt(1).setIcon(R.drawable.fire);
     }
 }
