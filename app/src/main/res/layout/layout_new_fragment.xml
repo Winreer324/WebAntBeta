@@ -1,29 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="match_parent"
+<FrameLayout
+    android:id="@+id/frame_layout"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<android.support.design.widget.AppBarLayout android:id="@+id/appbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        app:titleTextColor="@color/colorBackgroundPopup"
+    <!--create toolbar-->
+    <android.support.design.widget.AppBarLayout android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorWhite"
+        android:layout_height="wrap_content" >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:titleTextColor="@color/colorBackgroundPopup"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorWhite"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            />
+
+    </android.support.design.widget.AppBarLayout>
+    <!---->
+
+    <!--image_not_connect-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="525dp"
+            android:id="@+id/image_not_connect"/>
+    <!---->
+
+    <!--create pool refresh-->
+    <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        />
+        android:id="@+id/swipeRefresh"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/new_fragment"
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-</android.support.design.widget.AppBarLayout>
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/new_fragment"
-    android:layout_marginTop="60dp"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-
-</android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <!--end pool-->
 
 </FrameLayout>

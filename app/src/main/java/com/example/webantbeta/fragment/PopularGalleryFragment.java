@@ -2,10 +2,12 @@ package com.example.webantbeta.fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.example.webantbeta.R;
 import com.example.webantbeta.activity.MainActivity;
@@ -23,9 +27,13 @@ import com.example.webantbeta.content.Content;
 
 import java.util.ArrayList;
 
+import static com.example.webantbeta.connect.CheckConnection.hasConnection;
+
 public class PopularGalleryFragment extends Fragment {
     private static final String TAG = "NewPicturesFragment";
 
+    private  ImageView imageView;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private ParseJSON connect = new ParseJSON();
     private static final String url = "http://gallery.dev.webant.ru/api/photos?popular=true";
 
@@ -44,14 +52,41 @@ public class PopularGalleryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_new_fragment, container, false);
+        final View view = inflater.inflate(R.layout.layout_new_fragment, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.new_fragment);
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
         Log.d(TAG, "onCreateView: created.");
-//        TabLayout tabLayout = view.findViewById(R.id.tabs);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                check(view);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                },4000);
+            }
+        });
         tab(view);
+
         return view;
     }
-
+    public void check(View view) {
+        imageView = view.findViewById(R.id.image_not_connect);
+        imageView.setImageResource(R.drawable.not_connect);
+        FrameLayout frameLayout = view.findViewById(R.id.frame_layout);
+        if (!hasConnection(getActivity()) ) {
+            mRecyclerView.setVisibility(View.INVISIBLE);
+            imageView.setVisibility(View.VISIBLE);
+            frameLayout.removeView(mRecyclerView);
+        } else {
+            imageView.setImageResource(0);
+            mRecyclerView.setVisibility(View.VISIBLE);
+            new PopularGalleryFragment.MyTask().execute();
+        }
+    }
     private void tab(View view) {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
