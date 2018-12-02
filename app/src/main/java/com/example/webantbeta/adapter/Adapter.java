@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -73,7 +74,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView image;
-        private RelativeLayout parentLayout;
+        private LinearLayout parentLayout;
+//        private RelativeLayout parentLayout;
 
          ViewHolder(@NonNull View itemView) {
             super(itemView);

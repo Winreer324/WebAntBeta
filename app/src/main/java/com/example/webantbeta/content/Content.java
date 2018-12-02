@@ -6,11 +6,20 @@ public class Content {
     private String name;
     private String url;
     private String description;
+    private int countOfPages;
+
+    public Content(){}
 
     public Content(String name, String url, String description) {
         this.name = name;
         this.url = url;
         this.description = description;
+    }
+    public Content(String name, String url, String description,int countOfPages) {
+        this.name = name;
+        this.url = url;
+        this.description = description;
+        this.countOfPages = countOfPages;
     }
 
     public String getName() {
@@ -35,5 +44,11 @@ public class Content {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getCountOfPages() { return countOfPages; }
+
+    public void setCountOfPages(int countOfPages) {
+        this.countOfPages = countOfPages;
     }
 }

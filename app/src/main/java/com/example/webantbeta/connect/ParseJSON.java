@@ -1,7 +1,7 @@
 package com.example.webantbeta.connect;
 
-import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.webantbeta.content.Content;
 
@@ -56,15 +56,17 @@ public class ParseJSON {
             dataJsonObj = new JSONObject(strJson);
             JSONArray data = dataJsonObj.getJSONArray("data");
 
+            int countOfPages =  dataJsonObj.getInt("countOfPages");
+
             for (int i = 0; i < data.length(); i++) {
                 JSONObject images = data.getJSONObject(i);
 
                 JSONObject image = images.getJSONObject("image");
-
                 mContent.add(new Content(
                         images.getString("name"),
                         image.getString("contentUrl"),
-                        images.getString("description")
+                        images.getString("description"),
+                        countOfPages
                 ));
                 Log.d(TAG, "\ronPostExecute: "
                         + "Name: " + mContent.get(i).getName()
