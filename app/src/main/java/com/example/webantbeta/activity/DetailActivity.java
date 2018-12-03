@@ -1,11 +1,9 @@
 package com.example.webantbeta.activity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -16,15 +14,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.webantbeta.R;
 import com.example.webantbeta.adapter.AdapterPage;
-import com.example.webantbeta.fragment.NewGalleryFragment;
-import com.example.webantbeta.fragment.PopularGalleryFragment;
-
-import static com.example.webantbeta.R.color.colorWhite;
 
 public class DetailActivity extends MainActivity {
     ImageView image_popup;
     TextView textDesc, textMain;
-    private ViewPager mViewPager;
     private Toolbar toolbar;
     private AdapterPage mAdapter;
     private TabLayout mTabLayout;
@@ -37,9 +30,6 @@ public class DetailActivity extends MainActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
-//        if (checkF){
-//            toolbar.setTitle("new");
-//        }else  toolbar.setTitle("ffff");
         Button btn = new Button(this);
 
         btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow_left, 0, 0, 0);
@@ -49,9 +39,6 @@ public class DetailActivity extends MainActivity {
 
         setSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
-
-        String strNew = "New";
-        String strPopulary = "Populary";
 
         View.OnClickListener lis = new View.OnClickListener() {
             @Override
@@ -70,18 +57,10 @@ public class DetailActivity extends MainActivity {
 
         mAdapter = new AdapterPage(getSupportFragmentManager());
 
-        mTabLayout = (TabLayout) findViewById(R.id.tabs_popup);
-        mViewPager = (ViewPager) findViewById(R.id.container_popup);
+        mTabLayout = findViewById(R.id.tabs_popup);
 
         mTabLayout.addTab(mTabLayout.newTab().setIcon(R.drawable.file_document_box).setText("New"));
         mTabLayout.addTab(mTabLayout.newTab().setIcon(R.drawable.fire).setText("Popular"));
-//
-//        mAdapter.addFragment(new NewGalleryFragment(),strNew);
-//        mAdapter.addFragment(new PopularGalleryFragment(),strPopulary);
-
-//        mViewPager.setAdapter(mAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
-
 
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -104,9 +83,8 @@ public class DetailActivity extends MainActivity {
 
             }
         });
-//        mViewPager.setVisibility(View.INVISIBLE);
 
-//      creat view popup
+//      create content popup
 
         image_popup = (ImageView) findViewById(R.id.image_popup);
         textMain = (TextView) findViewById(R.id.textMain);

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/absoluteLayoutPopup"
     android:background="@color/colorWhite">
@@ -27,60 +29,49 @@
         android:layout_width="400dp"
         android:layout_height="200dp"
         android:scaleType="fitXY"
-        android:layout_x="0dp"
-        android:layout_y="53dp"
+        android:contentDescription="@string/descriptionImage"
         android:background="@color/colorBackgroundPopup"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/textMain"
-        android:layout_width="320dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="142dp"
-        android:layout_marginBottom="-89dp"
-        android:layout_x="30dp"
-        android:layout_y="273dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="40dp"
         android:text="asdf"
+        android:layout_gravity="start"
         android:textColor="@color/colorTextMainPopup"
         android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textDesc"
-        android:layout_width="320dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="105dp"
-        android:layout_marginBottom="-221dp"
-        android:layout_x="30dp"
-        android:layout_y="308dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="40dp"
         android:text="sadfsadfasdfasdf"
         android:textColor="@color/colorBlack"
         android:textSize="12sp" />
-    <!---->
-    <android.support.v4.view.ViewPager
-        android:id="@+id/container_popup"
-        android:layout_width="match_parent"
+
+    <LinearLayout
         android:layout_height="match_parent"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="58dp">
-
-    </android.support.v4.view.ViewPager>
-    <!---->
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs_popup"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="360dp"
-        android:layout_x="0dp"
-        android:layout_y="530dp"
-        app:tabBackground="@color/colorWhite"
-        app:tabIndicatorColor="@color/colorBlack"
-        app:tabSelectedTextColor="@color/colorTabsIconActive"
-        app:tabTextAppearance="@style/TabText">
+        android:orientation="horizontal">
 
-    </android.support.design.widget.TabLayout>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs_popup"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            app:tabBackground="@color/colorWhite"
+            app:tabIndicatorColor="@color/colorWhite"
+            app:tabSelectedTextColor="@color/colorTabsIconActive"
+            app:tabTextAppearance="@style/TabText"/>
 
+    </LinearLayout>
 
-</AbsoluteLayout>
+</LinearLayout>

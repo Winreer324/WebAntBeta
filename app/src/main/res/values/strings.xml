@@ -8,6 +8,8 @@
     <string name="menu_item_settings">Настройки</string>
     <string name="menu_item_reference">Справка</string>
 
+    <string name="descriptionImage">Картинка</string>
+
     <string name="view_navigation_open">Открыть</string>
     <string name="view_navigation_close">Закрыть</string>
 
