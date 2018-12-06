@@ -17,11 +17,9 @@ public class AdapterPage extends FragmentPagerAdapter {
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);
     }
-
     public AdapterPage(FragmentManager fm) {
         super(fm);
     }
-
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {

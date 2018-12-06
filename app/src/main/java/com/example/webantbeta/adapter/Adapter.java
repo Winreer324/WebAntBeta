@@ -10,19 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.webantbeta.content.Content;
-import com.example.webantbeta.activity.DetailActivity;
 import com.example.webantbeta.R;
+import com.example.webantbeta.activity.DetailActivity;
+import com.example.webantbeta.content.Content;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.webantbeta.content.Content.mUrl;
-
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";
@@ -53,7 +51,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 .into(viewHolder.image);
 
 //        listener text
-
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,8 +58,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 Intent intent = new Intent(mContext, DetailActivity.class);
                 intent.putExtra("Url", mContent.get(i).getUrl());
                 intent.putExtra("Name", mContent.get(i).getName());
+                intent.putExtra("New", mContent.get(i).getTypeNew());
+                intent.putExtra("Popular", mContent.get(i).getTypePopular());
                 intent.putExtra("Description", mContent.get(i).getDescription());
                 mContext.startActivity(intent);
+                Log.d(TAG, "onClick: lol new"+mContent.get(i).getTypeNew());
+                Log.d(TAG, "onClick: lol Popular"+mContent.get(i).getTypePopular());
             }
         });
     }

@@ -1,7 +1,6 @@
 package com.example.webantbeta.connect;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.webantbeta.content.Content;
 
@@ -16,9 +15,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.example.webantbeta.content.Content.countOfPages;
 
 public class ParseJSON {
-
     private String resultJson = "";
 
     private static final String TAG = "ParseJSON: ";
@@ -38,9 +37,7 @@ public class ParseJSON {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
             String line;
-            while ((line = reader.readLine()) != null) {
-                buffer.append(line);
-            }
+            while ((line = reader.readLine()) != null) { buffer.append(line); }
             resultJson = buffer.toString();
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,26 +50,34 @@ public class ParseJSON {
         JSONObject dataJsonObj = null;
 
         try {
+
             dataJsonObj = new JSONObject(strJson);
             JSONArray data = dataJsonObj.getJSONArray("data");
 
-            int countOfPages =  dataJsonObj.getInt("countOfPages");
+            int page =  dataJsonObj.getInt("countOfPages");
+            countOfPages=page;
+            Log.d(TAG, "ParseJson: countOfPages "+page);
 
             for (int i = 0; i < data.length(); i++) {
-                JSONObject images = data.getJSONObject(i);
 
+                JSONObject images = data.getJSONObject(i);
                 JSONObject image = images.getJSONObject("image");
+
                 mContent.add(new Content(
                         images.getString("name"),
                         image.getString("contentUrl"),
                         images.getString("description"),
-                        countOfPages
+                        images.getString("new"),
+                        images.getString("popular")
                 ));
                 Log.d(TAG, "\ronPostExecute: "
                         + "Name: " + mContent.get(i).getName()
                         + ", Url: " + mContent.get(i).getUrl()
                         + ", Description " + mContent.get(i).getDescription()
+                        + ", new " + mContent.get(i).getTypeNew()
+                        + ", popular " + mContent.get(i).getTypePopular()
                 );
+
             }
         } catch (JSONException e) { e.printStackTrace(); }
     }

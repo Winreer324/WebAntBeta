@@ -1,10 +1,14 @@
 package com.example.webantbeta.activity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,18 +19,20 @@ import com.bumptech.glide.Glide;
 import com.example.webantbeta.R;
 import com.example.webantbeta.adapter.AdapterPage;
 
-public class DetailActivity extends MainActivity {
-    ImageView image_popup;
-    TextView textDesc, textMain;
-    private Toolbar toolbar;
-    private AdapterPage mAdapter;
-    private TabLayout mTabLayout;
 
+public class DetailActivity extends MainActivity {
+    private static final String TAG = "DetailActivity";
+     ImageView image_popup;
+     TextView textDesc, textMain;
+     Toolbar toolbar;
+     AdapterPage mAdapter;
+     TabLayout mTabLayout;
+     String typeNew,typePopular;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_popup);
-        boolean checkF = true;
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
@@ -44,10 +50,7 @@ public class DetailActivity extends MainActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailActivity.this, MainActivity.class);
-
-// todo сделать возращение фрагмента !!!!!!!!!!!!
-//                intent.putExtra("Name", mContent.get(i).getName());
-//                intent.putExtra("Description", mContent.get(i).getDescription());
+                finish();
                 startActivity(intent);
 
             }
@@ -65,11 +68,11 @@ public class DetailActivity extends MainActivity {
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                if(mTabLayout.getSelectedTabPosition() == 0){
-                    Toast.makeText(DetailActivity.this, "New", Toast.LENGTH_SHORT).show();
+                if(mTabLayout.getSelectedTabPosition() == 0 ){
+
                 }
-                if(mTabLayout.getSelectedTabPosition() == 1){
-                    Toast.makeText(DetailActivity.this, "Popular", Toast.LENGTH_SHORT).show();
+                if(mTabLayout.getSelectedTabPosition() == 1 ){
+
                 }
             }
 
@@ -86,12 +89,11 @@ public class DetailActivity extends MainActivity {
 
 //      create content popup
 
-        image_popup = (ImageView) findViewById(R.id.image_popup);
-        textMain = (TextView) findViewById(R.id.textMain);
-        textDesc = (TextView) findViewById(R.id.textDesc);
+        image_popup = findViewById(R.id.image_popup);
+        textMain = findViewById(R.id.textMain);
+        textDesc = findViewById(R.id.textDesc);
         String url = "http://gallery.dev.webant.ru/media/", name = null, description = null;
-        String someText = " some text some text some text some text some text some text some text" +
-                " some text some text some text some text some text some text some text some text some ";
+
         try {
             Bundle arguments = getIntent().getExtras();
 
@@ -103,12 +105,28 @@ public class DetailActivity extends MainActivity {
                         .into(image_popup);
 
                 name = arguments.get("Name").toString();
+                typeNew = arguments.get("New").toString();
+                typePopular = arguments.get("Popular").toString();
                 description = arguments.get("Description").toString();
-                description += someText;
             }
             textMain.setText(name);
             textDesc.setText(description);
             image_popup.setImageURI(Uri.parse(url));
+
+//        active tab
+            if (typeNew.equals("true") && typePopular.equals("false")) {
+                mTabLayout.getTabAt( 0).setIcon(R.drawable.file_document_box_active);
+                mTabLayout.getTabAt( 1).setIcon(R.drawable.fire);
+                mTabLayout.getTabAt( 0).select();
+            } if(typeNew.equals("false") && typePopular.equals("true")) {
+                mTabLayout.getTabAt( 0).setIcon(R.drawable.file_document_box);
+                mTabLayout.getTabAt( 1).setIcon(R.drawable.fire_active);
+//                mTabLayout.setTabTextColors(
+//                        getResources().getColor(R.color.colorTabsIconNoActive) ,
+//                        getResources().getColor(R.color.colorTabsIconActive) );
+                mTabLayout.getTabAt( 1).select();
+            }
+//         active tab
 
         } catch (Exception e) {
             Toast.makeText(this, "Error in DetailActivity", Toast.LENGTH_SHORT).show();

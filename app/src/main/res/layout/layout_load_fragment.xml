@@ -21,48 +21,17 @@
             />
 
     </android.support.design.widget.AppBarLayout>
-    <!--create toolbar-->
+    <!---->
 
-    <!--image_not_connect-->
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="525dp"
-            android:id="@+id/image_not_connect"/>
-    <!--image_not_connect-->
 
-    <!--create pool refresh-->
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/swipeRefresh"
-        android:layout_marginTop="60dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/new_fragment"
-            android:layout_marginTop="160dp"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"/>
-
-    </android.support.v4.widget.SwipeRefreshLayout>
-    <!--end pool-->
-
-    <!--<ProgressBar-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/progressBar1"-->
-    <!--android:visibility="gone"-->
-    <!--android:layout_gravity="center|bottom"-->
-    <!--android:layout_marginBottom="50dp"/>-->
-
-    <!--load animation-->
     <LinearLayout
         android:layout_width="150dp"
-        android:layout_gravity="center|top"
+        android:gravity="center"
         android:layout_height="50dp"
+        android:background="@color/colorBlack"
         android:id="@+id/layoutLoad"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="80dp"
         android:orientation="horizontal" >
         <ImageView
             android:id="@+id/circle1"
@@ -80,6 +49,6 @@
             android:layout_height="wrap_content"
             android:src="@drawable/circle_three"/>
     </LinearLayout>
-    <!--load animation-->
+
 
 </FrameLayout>
