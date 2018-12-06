@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 
 import static com.example.webantbeta.connect.CheckConnection.hasConnection;
 import static com.example.webantbeta.content.Content.countOfPages;
+import static com.example.webantbeta.activity.DetailActivity.typePopup;
 
 public class NewGalleryFragment extends AbstractFragment
 {
@@ -45,6 +47,7 @@ public class NewGalleryFragment extends AbstractFragment
     //load
     private SwipeRefreshLayout swipeRefreshLayout;
     private ImageView imageView;
+    private TabLayout mTabLayout;
     private GridLayoutManager manager;
     private boolean load = false;
     private boolean isScrolling = false;
@@ -77,6 +80,8 @@ public class NewGalleryFragment extends AbstractFragment
         Toast.makeText(getActivity(), ""+n.getId(), Toast.LENGTH_SHORT).show();
         mRecyclerView = view.findViewById(R.id.new_fragment);
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
+
+        mTabLayout = view.findViewById(R.id.tabs);
 // load
         linearLoad = view.findViewById(R.id.layoutLoad);
         linearLoad.setVisibility(View.INVISIBLE);
@@ -87,6 +92,7 @@ public class NewGalleryFragment extends AbstractFragment
         manager = new GridLayoutManager(getContext(), 2);
 
         mRecyclerView.setLayoutManager(manager);
+//      swipe down
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
         {
             @Override
@@ -119,6 +125,7 @@ public class NewGalleryFragment extends AbstractFragment
             }
         });
 
+//      pool refresh
         Log.d(TAG, "onCreateView: created.");
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -135,6 +142,7 @@ public class NewGalleryFragment extends AbstractFragment
                 }, 3000);
             }
         });
+//
         tab(view);
 
         return view;
@@ -234,5 +242,20 @@ public class NewGalleryFragment extends AbstractFragment
             connect.ParseJson(mContent, doInBackground());
             initRecyclerView();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // return result type popup
+//        try {
+//            if(typePopup == 0){ mTabLayout.getTabAt(0).select();}
+//            if(typePopup == 1){ mTabLayout.getTabAt(1).select();}
+//            Toast.makeText(getActivity(), "typePopup = "+typePopup, Toast.LENGTH_SHORT).show();
+//            Log.d(TAG, "onResume: activity posle typePopup"+typePopup);
+//        } catch (Exception e) {
+//            Toast.makeText(getActivity(), "Error in DetailActivity return New", Toast.LENGTH_SHORT).show();
+//        }
+//
     }
 }

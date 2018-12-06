@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -74,7 +73,6 @@ public class PopularGalleryFragment extends AbstractFragment
     {
         final View view = inflater.inflate(R.layout.layout_populary_fragment, container, false);
         PopularGalleryFragment n = new PopularGalleryFragment();
-        Toast.makeText(getActivity(), ""+n.getId(), Toast.LENGTH_SHORT).show();
         mRecyclerView = view.findViewById(R.id.popular_fragment);
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
 // load
@@ -135,7 +133,6 @@ public class PopularGalleryFragment extends AbstractFragment
                     public void run() {
                         swipeRefreshLayout.setRefreshing(false);
                         linearLoad.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
                     }
                 }, 3000);
             }
