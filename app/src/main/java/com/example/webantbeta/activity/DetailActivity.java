@@ -138,12 +138,11 @@ public class DetailActivity extends MainActivity {
     }
 
     private void initTabs(final DetailActivity context) {
-        mTabLayout.getTabAt(0).setIcon(R.drawable.file_document_box_active);
-        mTabLayout.getTabAt(1).setIcon(R.drawable.fire);
+        final int tabIconColor = ContextCompat.getColor(context, R.color.colorTabsIconActive);
+        mTabLayout.getTabAt(0).getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                int tabIconColor = ContextCompat.getColor(context, R.color.colorTabsIconActive);
                 tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
             }
 
@@ -170,15 +169,15 @@ public class DetailActivity extends MainActivity {
 
     //        active tab
     private void changeTabs() {
+        if ( typePopular.equals("true") && typeNew.equals("true") || typePopular.equals("true")) {
+            mTabLayout.getTabAt(0).setIcon(R.drawable.file_document_box);
+            mTabLayout.getTabAt(1).setIcon(R.drawable.fire_active);
+            mTabLayout.getTabAt(1).select();
+        }
         if ( typeNew.equals("true") || typeNew.equals("true") && typePopular.equals("false") ) {
             mTabLayout.getTabAt(0).setIcon(R.drawable.file_document_box_active);
             mTabLayout.getTabAt(1).setIcon(R.drawable.fire);
             mTabLayout.getTabAt(0).select();
-        }
-        if ( typePopular.equals("true") || typeNew.equals("false") && typePopular.equals("true") ) {
-            mTabLayout.getTabAt(0).setIcon(R.drawable.file_document_box);
-            mTabLayout.getTabAt(1).setIcon(R.drawable.fire_active);
-            mTabLayout.getTabAt(1).select();
         }
     }
 
