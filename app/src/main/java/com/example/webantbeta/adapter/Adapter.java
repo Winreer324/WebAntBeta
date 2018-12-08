@@ -27,7 +27,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private List<Content> mContent;
     private Context mContext;
-
     public Adapter(Context context, ArrayList<Content> pictures) {
         mContent = pictures;
         mContext = context;
@@ -45,12 +44,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
         Log.d(TAG, "onBindViewHolder: called.");
         Log.d(TAG, "+mContent.get(i).getUrl(): "+ mContent.get(i).getUrl());
+
         Glide.with(mContext)
                 .asBitmap()
                 .load(mUrl+ mContent.get(i).getUrl())
                 .into(viewHolder.image);
 
-//        listener text
+//      create content to popup
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -47,7 +47,7 @@ public class ParseJSON {
 
     public void ParseJson(ArrayList<Content> mContent, String strJson) {
         Log.d(TAG, strJson);
-        JSONObject dataJsonObj = null;
+        JSONObject dataJsonObj;
 
         try {
 

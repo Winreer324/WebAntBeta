@@ -17,6 +17,7 @@ public class Content {
         this.typeNew = typeNew;
         this.typePopular = typePopular;
     }
+
     public String getName() {
         return name;
     }
